@@ -4,8 +4,8 @@ List<Item> aboAnasItems = [
 
   //////*********** El Sandwatich
 
-  Item(name: "شربة كريمة بالفراخ والمشروم" , id: 0 , price: 20 , special: ""),
-  Item(name: "شوربة لسان بالفراخ" , id: 1 , price: 15 , special: ""),
+  Item(name: "شوربة كريمة بالفراخ والمشروم" , id: 0 , price: 20 , special: ""),
+  Item(name: "شوربة لسان عصفور" , id: 1 , price: 15 , special: ""),
   Item(name: "شاورما فراخ سوري" , id: 2 , price: 32 , special: ""),
   Item(name: "شاورما لحم سوري" , id: 3 , price: 36 , special: ""),
   Item(name: "شاورما ميكس سوري" , id: 4 , price: 35 , special: ""),

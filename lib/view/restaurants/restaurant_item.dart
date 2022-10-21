@@ -1,25 +1,23 @@
+import 'package:amr_calculator_app/models/restaurant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/styles/app_colors.dart';
 import '../../../core/styles/app_text_style.dart';
 
 class ResturantItem extends StatelessWidget {
-  ResturantItem({Key? key,required this.fun, required this.index}) : super(key: key);
-
-  List<Map<String, String>> events = [
-    {"bgPath": "assets/images/abo_anas.png", "name": "ابو انس"},
-    {"bgPath": "assets/images/koshary_hind.png", "name": "كشري هند"},
-  ];
-
-  final fun;
-  final int index;
+  ResturantItem({Key? key, required this.onTap, required this.restaurant})
+      : super(key: key);
+  final onTap;
+  Restaurant restaurant;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: fun,
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
+          height: 250.h,
           decoration: BoxDecoration(
               color: AppColors.lightBackGroundColor,
               borderRadius: BorderRadius.circular(10),
@@ -30,6 +28,7 @@ class ResturantItem extends StatelessWidget {
                     color: Colors.grey.shade300)
               ]),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Expanded(
                 flex: 3,
@@ -39,7 +38,7 @@ class ResturantItem extends StatelessWidget {
                     topLeft: Radius.circular(10),
                   ),
                   child: Image.asset(
-                    events[index]["bgPath"]!,
+                    restaurant.imagePath,
                     fit: BoxFit.cover,
                     width: double.infinity,
                   ),
@@ -50,10 +49,9 @@ class ResturantItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Text(
-                    events[index]["name"]!,
+                    restaurant.name,
                     style:
-                    AppTextStyle.bodyText().copyWith(fontFamily: "Tajawal"),
-
+                        AppTextStyle.bodyText().copyWith(fontFamily: "Tajawal"),
                   ),
                 ),
               ),
@@ -62,6 +60,5 @@ class ResturantItem extends StatelessWidget {
         ),
       ),
     );
-
   }
 }

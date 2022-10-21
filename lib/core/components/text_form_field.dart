@@ -31,6 +31,7 @@ class DefaultTextFormField extends StatefulWidget {
   final Function? onTap;
   final String? labelText;
   final String? hintText;
+  final TextDirection? textDirection;
   final TextEditingController controller;
   Color? fillColor;
 
@@ -55,6 +56,7 @@ class DefaultTextFormField extends StatefulWidget {
       this.hintText,
       required this.textInputType,
       required this.controller,
+      this.textDirection,
       this.onFilledSubmit,
       this.onChange,
       this.onTap,
@@ -85,6 +87,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textDirection: widget.textDirection,
       maxLines: widget.maxLines,
       maxLength: widget.maxLength,
       style: AppTextStyle.bodyText(),

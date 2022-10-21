@@ -1,4 +1,6 @@
-import 'package:amr_calculator_app/core/components/general_button.dart';
+import 'package:amr_calculator_app/core/components/default_button.dart';
+import 'package:amr_calculator_app/core/utils/naviagtion.dart';
+import 'package:amr_calculator_app/view/menu/menu_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,13 +9,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../../core/components/text_form_field.dart';
 import '../../core/styles/app_text_style.dart';
 import '../../core/toast/toast.dart';
-import '../../cubits/order_cubit/order_cubit.dart';
-import '../../cubits/user_cubit/user_cubit.dart';
+import '../../cubits/user/user_cubit.dart';
 import '../../enums/ToostStates.dart';
-import '../../models/user.dart';
 
-class AddUserView extends StatelessWidget {
-  AddUserView({Key? key}) : super(key: key);
+class AddUserScreen extends StatelessWidget {
+  AddUserScreen({Key? key}) : super(key: key);
   TextEditingController nameController = new TextEditingController();
 
   @override
@@ -25,7 +25,7 @@ class AddUserView extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +45,7 @@ class AddUserView extends StatelessWidget {
                 fillColor: Colors.grey.shade200,
               ),
               SizedBox(
-                height: 20.h,
+                height: 40.h,
               ),
               BlocConsumer<UserCubit, UserState>(
                 listener: (context, state) {
@@ -64,19 +64,27 @@ class AddUserView extends StatelessWidget {
                       ? const Center(
                           child: CircularProgressIndicator(),
                         )
-                      : GeneralButton(
-                          height: 40.h,
-                          function: () {
-                            if (nameController.text.isNotEmpty) {
-                              User user = User(
-                                  name: nameController.text,
-                                  checkPrice: 0,
-                                  isCheck: 0,
-                                  totalPrice: 0);
-                              UserCubit.get(context).addUser(user: user);
-                            }
-                          },
-                          text: "Add");
+                      : Center(
+                          child: DefaultButton(
+                              width: 100.w,
+                              height: 40.h,
+                              borderRadius: 10.r,
+                              onPress: () {
+                                AppNavigator.customNavigator(
+                                    context: context,
+                                    screen: MenuScreen(),
+                                    finish: false);
+                                // if (nameController.text.isNotEmpty) {
+                                //   User user = User(
+                                //       name: nameController.text,
+                                //       checkPrice: 0,
+                                //       isCheck: 0,
+                                //       totalPrice: 0);
+                                //   UserCubit.get(context).addUser(user: user);
+                                // }
+                              },
+                              text: "Add"),
+                        );
                 },
               )
             ],

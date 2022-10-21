@@ -4,43 +4,44 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../styles/app_colors.dart';
 import '../styles/app_text_style.dart';
 
-
-class GeneralButton extends StatelessWidget {
-  Function function;
+class DefaultButton extends StatelessWidget {
+  Function onPress;
   String text;
   IconData? icon;
   double? borderRadius;
   double? height;
+  double? width;
   Color? backgroundColor;
   Color? textColor;
   bool hasBorder;
-  GeneralButton(
+  DefaultButton(
       {Key? key,
-        required this.function,
-        required this.text,
-        this.icon,
-        this.borderRadius,
-        this.height,
-        this.backgroundColor,
-        this.textColor,
-        this.hasBorder = false})
+      required this.onPress,
+      required this.text,
+      this.icon,
+      this.borderRadius,
+      this.height,
+      this.width,
+      this.backgroundColor,
+      this.textColor,
+      this.hasBorder = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: height ?? 35.h,
+        height: height ?? 50.h,
+        width: width ?? double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius ?? 10),
+            borderRadius: BorderRadius.circular(borderRadius ?? 30.r),
             color: backgroundColor ?? AppColors.primaryColor,
             border: hasBorder
                 ? Border.all(color: AppColors.primaryColor, width: 1)
                 : null),
         child: MaterialButton(
           onPressed: () {
-            function();
+            onPress();
           },
-          minWidth: double.infinity,
           textColor: Colors.white,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
